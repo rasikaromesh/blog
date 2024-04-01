@@ -1,11 +1,12 @@
 import './Post.Styles.scss';
+import PostHeaderComponent from "../PostHeader/PostHeader.component";
 
 export const PostComponent = () => {
     return (
         <div className="post-container">
-            <h1>
+            <PostHeaderComponent>
                 The standard Lorem Ipsum passage, used since the 1500s
-            </h1>
+            </PostHeaderComponent>
             <p>
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
                 dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
@@ -13,9 +14,9 @@ export const PostComponent = () => {
                 fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
                 deserunt mollit anim id est laborum."
             </p>
-            <h3>
+            <PostHeaderComponent size={3}>
                 Section 1.10.32 of "de Finibus Bonorum et Malorum", written by Cicero in 45 BC
-            </h3>
+            </PostHeaderComponent>
             <p>
                 "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam
                 rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt
