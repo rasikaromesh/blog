@@ -1,4 +1,4 @@
-import './Post.Styles.scss';
+import './BlogPost.Styles.scss';
 import {ContentBlock, Post} from "../../Types/Post";
 import React from "react";
 
@@ -8,11 +8,13 @@ interface BlogPostProps {
 const renderContentBlock = (block: ContentBlock) => {
     switch (block.type) {
         case 'paragraph':
-            return <p>{block.text}</p>;
+            return <p className='paragraph'>{block.text}</p>;
         case 'heading':
             return React.createElement(`h${block.level}`, {}, block.text);
         case 'image':
-            return <img src={block.src} alt={block.alt} />;
+            return (<div className='image-box'>
+                <img src={block.src} alt={block.alt} />
+            </div>);
         case 'list':
             return (
                 <ul>
@@ -28,7 +30,7 @@ const renderContentBlock = (block: ContentBlock) => {
 
 export const BlogPostComponent: React.FC<BlogPostProps> = ({post}) => {
     return (
-        <div>
+        <div className='post-container'>
             <h2>{post.title}</h2>
             {post.content.map((block, index) => (
                 <div key={index}>{renderContentBlock(block)}</div>

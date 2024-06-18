@@ -6,7 +6,7 @@ import {Post} from "../../Types/Post";
 import EditPostComponent from "../../components/EditPost/EditPost.component";
 
 export const HomePage = () => {
-    const [post, setPost] = useState<Post[]>([
+    const [post, setPost] = useState<Post>(
             {
                 "id": 1,
                 "title": "My First Blog Post",
@@ -35,17 +35,16 @@ export const HomePage = () => {
                     }
                 ]
             }
-        ]
     );
     return (
         <div className="home-container">
             <div className="posts-container">
 
-                <BlogPostComponent post={post[0]}/>
+                <BlogPostComponent post={post}/>
             </div>
             <div className="post-form-container">
                 <FormThemeProvider>
-                    <EditPostComponent/>
+                    <EditPostComponent post={post} setPost={setPost}/>
                 </FormThemeProvider>
             </div>
         </div>

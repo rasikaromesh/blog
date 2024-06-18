@@ -1,26 +1,18 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {ContentBlock, HeadingBlock, ImageBlock, ListBlock, ParagraphBlock, Post} from "../../Types/Post";
-import {BlogPostComponent} from "../Post/BlogPostComponent";
 
-
-const initialPost: Post = {
-    id: 1,
-    title: 'My First Blog Post',
-    content: [
-        {type: 'heading', level: 1, text: 'Introduction'} as HeadingBlock,
-        {type: 'paragraph', text: 'This is the introduction to my first blog post.'} as ParagraphBlock,
-        {type: 'image', src: 'https://example.com/image.jpg', alt: 'An example image'} as ImageBlock,
-        {type: 'list', items: ['First item', 'Second item', 'Third item']} as ListBlock,
-        {type: 'paragraph', text: 'This is the conclusion of my first blog post.'} as ParagraphBlock,
-    ]
-};
 const isParagraphBlock = (block: ContentBlock): block is ParagraphBlock => block.type === 'paragraph';
 const isHeadingBlock = (block: ContentBlock): block is HeadingBlock => block.type === 'heading';
 const isImageBlock = (block: ContentBlock): block is ImageBlock => block.type === 'image';
 const isListBlock = (block: ContentBlock): block is ListBlock => block.type === 'list';
 
-const EditPostComponent: React.FC = () => {
-    const [post, setPost] = useState<Post>(initialPost);
+export interface EditPostProps {
+    post: Post;
+    setPost: (post: Post) => void;
+}
+
+const EditPostComponent: React.FC<EditPostProps> = (props) => {
+    const {post, setPost} = props;
 
     const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setPost({...post, title: e.target.value});
@@ -51,7 +43,7 @@ const EditPostComponent: React.FC = () => {
                 return {...block, items: value};
             }
 
-            return block; // Fallback if no matching type
+            return block;
         });
 
         setPost({...post, content: newContent});
@@ -142,8 +134,6 @@ const EditPostComponent: React.FC = () => {
             <button onClick={() => addContentBlock('image')}>Add Image</button>
             <button onClick={() => addContentBlock('list')}>Add List</button>
 
-            <h2>Preview</h2>
-            <BlogPostComponent post={post}/>
         </div>
     );
 };
