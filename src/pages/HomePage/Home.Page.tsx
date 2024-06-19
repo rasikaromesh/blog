@@ -22,7 +22,7 @@ export const HomePage = () => {
                     },
                     {
                         "type": "image",
-                        "src": "https://example.com/image.jpg",
+                        "src": "https://onecms-res.cloudinary.com/image/upload/s--O2ieHjKj--/c_fill,g_auto,h_468,w_830/f_auto,q_auto/v1/mediacorp/cna/image/2023/02/27/istock-1357759108.jpg?itok=zKcg0hVU",
                         "alt": "An example image"
                     },
                     {
