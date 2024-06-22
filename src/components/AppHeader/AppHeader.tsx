@@ -1,5 +1,5 @@
 export const AppHeader = () => {
     return (
-        <><h1>Blog</h1></>
+        <><h1>Roma's Scribbles</h1></>
     );
 };

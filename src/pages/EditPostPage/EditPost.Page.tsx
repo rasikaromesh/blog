@@ -5,9 +5,13 @@ import EditPostComponent from '../../components/EditPost/EditPost.component';
 
 type EditPostPageProps = {
     postId: number;
+    title?: string;
+    content?: any;
+    post?: any;
+    setPost?: any;
 };
 
-const EditPostPage: React.FC<EditPostPageProps> = ({ postId, title, content }) => {
+const EditPostPage: React.FC<EditPostPageProps> = ({ postId, title = 'test title', content, post, setPost }) => {
     // Your component logic here
 
     return (
