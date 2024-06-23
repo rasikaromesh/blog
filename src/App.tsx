@@ -4,7 +4,7 @@ import { HomePage } from "./pages/HomePage/Home.Page";
 import { AppHeader } from "./components/AppHeader/AppHeader";
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import EditPostComponent from './components/EditPost/EditPost.component';
-import EditPostPage from './pages/EditPostPage/EditPost.Page';
+import CreateEditPostPage from './pages/CreateEditPostPage/CreateEditPost.Page';
 import PostPage from './pages/PostPage/Post.Page';
 import { RecoilRoot } from 'recoil';
 
@@ -17,7 +17,7 @@ function App() {
                 <Routes>
                     <Route path='/' element={<HomePage/>}/>
                     <Route path='post/:id' element={<PostPage/>}/>
-                    <Route path='edit/:id' element={<EditPostPage postId={0}/>}/>
+                    <Route path='edit/:id' element={<CreateEditPostPage postId={0}/>}/>
                 </Routes>
             </div>
         </Router>
