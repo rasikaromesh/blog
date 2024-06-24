@@ -9,38 +9,9 @@ import { postsState } from '../../states/posts.state';
 import { getAllPosts } from '../../services/postService';
 
 export const HomePage = () => {
-    const thePost: Post = {
-        "id": 1,
-        "title": "My First Blog Post",
-        "content": [
-            {
-                "type": "heading",
-                "level": 1,
-                "text": "Introduction"
-            },
-            {
-                "type": "paragraph",
-                "text": "This is the introduction to my first blog post."
-            },
-            {
-                "type": "image",
-                "src": "https://onecms-res.cloudinary.com/image/upload/s--O2ieHjKj--/c_fill,g_auto,h_468,w_830/f_auto,q_auto/v1/mediacorp/cna/image/2023/02/27/istock-1357759108.jpg?itok=zKcg0hVU",
-                "alt": "An example image"
-            },
-            {
-                "type": "list",
-                "items": ["First item", "Second item", "Third item"]
-            },
-            {
-                "type": "paragraph",
-                "text": "This is the conclusion of my first blog post."
-            }
-        ]
-    }
-    const [posts, setPosts] = useState<Post[]>([thePost]);
-    const postFromState = useRecoilState(postsState);
+    const [posts, setPosts] = useRecoilState(postsState);
     useEffect(() => {
-      getAllPosts().then(res => setPosts([...res, thePost]));
+      getAllPosts().then(res => setPosts([...res, ...posts]));
     }, [])
     
 
