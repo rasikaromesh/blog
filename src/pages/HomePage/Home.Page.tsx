@@ -11,23 +11,16 @@ import { getAllPosts } from '../../services/postService';
 export const HomePage = () => {
     const [posts, setPosts] = useRecoilState(postsState);
     useEffect(() => {
-      getAllPosts().then(res => setPosts([...res, ...posts]));
+        getAllPosts().then(res => setPosts([...res, ...posts]));
     }, [])
-    
+
 
     return (
         <div className="home-container">
             {posts.map((post) => (
-                <>
-                    <div className="posts-container">
-
-                        <BlogPostComponent post={post} />
-                    </div>
-                    <div className="post-form-container">
-                        {/* <FormThemeProvider>
-                            <EditPostComponent post={post} setPost={null} />
-                        </FormThemeProvider> */}
-                    </div></>
+                <div className="posts-container">
+                    <BlogPostComponent post={post} />
+                </div>
             ))
             }
         </div>
