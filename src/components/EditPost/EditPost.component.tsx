@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {ContentBlock, HeadingBlock, ImageBlock, ListBlock, ParagraphBlock, Post} from "../../Types/Post";
+import { useRecoilValue } from 'recoil';
+import { selectedPostState } from '../../states/selectedPost.state';
 
 const isParagraphBlock = (block: ContentBlock): block is ParagraphBlock => block.type === 'paragraph';
 const isHeadingBlock = (block: ContentBlock): block is HeadingBlock => block.type === 'heading';
@@ -7,12 +9,13 @@ const isImageBlock = (block: ContentBlock): block is ImageBlock => block.type ==
 const isListBlock = (block: ContentBlock): block is ListBlock => block.type === 'list';
 
 export interface EditPostProps {
-    post: Post;
+    post?: Post;
     setPost: (post: Post) => void;
 }
 
 const EditPostComponent: React.FC<EditPostProps> = (props) => {
-    const {post, setPost} = props;
+    const {post = { title: '', id: 0, content: [] }, setPost} = props; // TODO remove
+
 
     const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setPost({...post, title: e.target.value});
@@ -73,6 +76,10 @@ const EditPostComponent: React.FC<EditPostProps> = (props) => {
     return (
         <div>
             <h2>Edit Post</h2>
+            <button onClick={() => addContentBlock('paragraph')}>Add Paragraph</button>
+            <button onClick={() => addContentBlock('heading')}>Add Heading</button>
+            <button onClick={() => addContentBlock('image')}>Add Image</button>
+            <button onClick={() => addContentBlock('list')}>Add List</button>
             <input
                 type="text"
                 value={post.title}
@@ -129,11 +136,6 @@ const EditPostComponent: React.FC<EditPostProps> = (props) => {
                     )}
                 </div>
             ))}
-            <button onClick={() => addContentBlock('paragraph')}>Add Paragraph</button>
-            <button onClick={() => addContentBlock('heading')}>Add Heading</button>
-            <button onClick={() => addContentBlock('image')}>Add Image</button>
-            <button onClick={() => addContentBlock('list')}>Add List</button>
-
         </div>
     );
 };
