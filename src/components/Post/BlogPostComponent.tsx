@@ -3,7 +3,7 @@ import {ContentBlock, Post} from "../../Types/Post";
 import React from "react";
 
 interface BlogPostProps {
-    post: Post;
+    post?: Post;
 }
 const renderContentBlock = (block: ContentBlock) => {
     switch (block.type) {
@@ -29,12 +29,12 @@ const renderContentBlock = (block: ContentBlock) => {
 };
 
 export const BlogPostComponent: React.FC<BlogPostProps> = ({post}) => {
-    return (
+    return post ? (
         <div className='post-container'>
             <h2>{post.title}</h2>
             {post.content.map((block, index) => (
                 <div key={index}>{renderContentBlock(block)}</div>
             ))}
         </div>
-    );
+    ): null;
 };
