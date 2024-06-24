@@ -11,16 +11,17 @@ import { RecoilRoot } from 'recoil';
 function App() {
     return (
         <RecoilRoot>
-        <Router>
-            <div className="App">
-                <AppHeader />
-                <Routes>
-                    <Route path='/' element={<HomePage/>}/>
-                    <Route path='post/:id' element={<PostPage/>}/>
-                    <Route path='edit/:id' element={<CreateEditPostPage postId={0}/>}/>
-                </Routes>
-            </div>
-        </Router>
+            <Router>
+                <div className="App">
+                    <AppHeader />
+                    <Routes>
+                        <Route path='/' element={<HomePage />} />
+                        <Route path='/post/:id' element={<PostPage />} />
+                        <Route path='/edit' element={<CreateEditPostPage />} />
+                        <Route path='/edit/:id' element={<CreateEditPostPage postId={0} />} />
+                    </Routes>
+                </div>
+            </Router>
         </RecoilRoot>
     );
 }
