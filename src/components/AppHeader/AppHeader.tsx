@@ -1,4 +1,5 @@
-import { useSetRecoilState } from "recoil";
+import './AppHeader.styles.scss';
+import {  useSetRecoilState } from "recoil";
 import { postsState } from "../../states/posts.state";
 import { Post } from "../../Types/Post";
 import { selectedPostState } from "../../states/selectedPost.state";
@@ -38,6 +39,8 @@ export const AppHeader = () => {
     setPost([thePost]);
     setSelectedPost(thePost);
     return (
-        <><h1>Roma's Scribbles</h1></>
+        <div className="app-header-container">
+            <h1 className='header'>Roma's Scribbles</h1>
+        </div>
     );
 };

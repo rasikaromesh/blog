@@ -1,18 +1,25 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useResetRecoilState, useSetRecoilState } from 'recoil';
+import { userState } from '../../states/user.state';
+import { selectedPostState } from '../../states/selectedPost.state';
 
 const LoginPage: React.FC = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const navigate = useNavigate();
+    const setUser = useSetRecoilState(userState);
+    const resetSelectedPost = useResetRecoilState(selectedPostState);
 
   
     const handleSubmit = (e: React.FormEvent) => {
       e.preventDefault();
       if (username === 'admin' && password === 'password') { // Simple validation
+        setUser({ username, isLoggedIn: true, role: 'admin'});
         setError('');
-        navigate('/');
+        resetSelectedPost();
+        navigate('/edit');
       } else {
         setError('Invalid username or password');
       }

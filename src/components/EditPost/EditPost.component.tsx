@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import {ContentBlock, HeadingBlock, ImageBlock, ListBlock, ParagraphBlock, Post} from "../../Types/Post";
-import { useRecoilValue } from 'recoil';
+import { useResetRecoilState } from 'recoil';
 import { selectedPostState } from '../../states/selectedPost.state';
+import { createPost } from '../../services/postService';
 
 const isParagraphBlock = (block: ContentBlock): block is ParagraphBlock => block.type === 'paragraph';
 const isHeadingBlock = (block: ContentBlock): block is HeadingBlock => block.type === 'heading';
@@ -15,6 +16,7 @@ export interface EditPostProps {
 
 const EditPostComponent: React.FC<EditPostProps> = (props) => {
     const {post = { title: '', id: 0, content: [] }, setPost} = props; // TODO remove
+    const resetSelectedPost = useResetRecoilState(selectedPostState);
 
 
     const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -73,6 +75,11 @@ const EditPostComponent: React.FC<EditPostProps> = (props) => {
         setPost({...post, content: [...post.content, newBlock]});
     };
 
+    const create = async (post: Post): Promise<void> =>{
+        const res = await createPost(post);
+        console.log(res);
+        
+    }
     return (
         <div>
             <h2>Edit Post</h2>
@@ -136,6 +143,8 @@ const EditPostComponent: React.FC<EditPostProps> = (props) => {
                     )}
                 </div>
             ))}
+            <button onClick={() => resetSelectedPost()}>reset</button>
+            <button onClick={() => create(post)}>save</button>
         </div>
     );
 };

@@ -3,8 +3,7 @@ import { BlogPostComponent } from '../../components/Post/BlogPostComponent';
 import { FormThemeProvider } from 'react-form-component';
 import EditPostComponent from '../../components/EditPost/EditPost.component';
 import { selectedPostState } from '../../states/selectedPost.state';
-import { useRecoilState, useRecoilValue } from 'recoil';
-import { Post } from '../../Types/Post';
+import { useRecoilState } from 'recoil';
 
 type CreateEditPostPageProps = {
     postId?: number;

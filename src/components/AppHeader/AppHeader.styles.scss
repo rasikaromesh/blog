@@ -1,0 +1,20 @@
+.app-header-container{
+    display: flex;
+    flex-direction: row;
+    
+    .header{
+        display: flex;
+        flex: 5;
+        justify-content: center;
+
+    }
+    .create-post{
+        display: flex;
+        flex: 1;
+        justify-content: center;
+        align-items: center;
+        button{
+            padding: 0;
+        }
+      }
+}

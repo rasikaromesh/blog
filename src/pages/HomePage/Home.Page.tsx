@@ -1,9 +1,6 @@
 import './Home.styles.scss'
 import { BlogPostComponent } from "../../components/Post/BlogPostComponent";
-import { FormThemeProvider } from "react-form-component";
-import { useEffect, useState } from "react";
-import { Post } from "../../Types/Post";
-import EditPostComponent from "../../components/EditPost/EditPost.component";
+import { useEffect } from "react";
 import { useRecoilState } from 'recoil';
 import { postsState } from '../../states/posts.state';
 import { getAllPosts } from '../../services/postService';
@@ -12,6 +9,7 @@ export const HomePage = () => {
     const [posts, setPosts] = useRecoilState(postsState);
     useEffect(() => {
         getAllPosts().then(res => setPosts([...res, ...posts]));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
 
